@@ -145,7 +145,7 @@
   function renderTimeline() {
     const timeline = document.getElementById('timeline-view');
     timeline.innerHTML = '';
-    document.getElementById('page-title').innerText = currentLang === 'zh' ? "2026 國際 PBL 課程日程表" : "2026 International PBL Program Itinerary";
+    document.getElementById('page-title').innerText = currentLang === 'zh' ? "2026 國際 PBL 日程表" : "2026 International PBL Program Itinerary";
     const filtered = masterData.filter(item => item.day === currentDay);
     filtered.forEach(item => {
       const eventText = currentLang === 'zh' ? item.event_cn : (item.event_en || item.event_cn);
