@@ -6,26 +6,92 @@
   <title>2026 NCCU International USR PBL Syllabus</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    /* （此處維持之前的政大藍金質感 CSS 樣式，為節省版面在此省略，請沿用上一版的 <style> 內容） */
-    :root { --primary-blue: #0A2540; --accent-gold: #B39256; --light-bg: #F4F6F9; --card-bg: #FFFFFF; --text-color: #333333; }
+    :root { 
+      --primary-blue: #0A2540; 
+      --accent-gold: #B39256; 
+      --light-bg: #F4F6F9; 
+      --card-bg: #FFFFFF; 
+      --text-color: #333333; 
+    }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--light-bg); color: var(--text-color); margin: 0; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary-blue); padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; height: 50px; padding-bottom: 10px;}
+    
+    /* 💻 電腦版表頭固定高度，防止切換語言時抖動 */
+    .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      border-bottom: 2px solid var(--primary-blue); 
+      margin-bottom: 20px; 
+      flex-wrap: wrap; 
+      gap: 15px; 
+      height: 50px; 
+      padding-bottom: 10px;
+    }
     h1 { color: var(--primary-blue); margin: 0; font-size: 24px; }
-    .controls button { background-color: var(--primary-blue); color: white; border: none; height: 38px; padding: 0px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px; display: inline-flex; align-items: center; justify-content: center;}
+    
+    /* 💻 按鈕高度固定 38px、垂直置中排版修正 */
+    .controls button { 
+      background-color: var(--primary-blue); 
+      color: white; 
+      border: none; 
+      height: 38px; 
+      padding: 0px 16px; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      margin-left: 10px; 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+    }
     .controls button:hover { background-color: var(--accent-gold); }
+    
     .tabs-container { display: flex; overflow-x: auto; gap: 8px; margin-bottom: 25px; padding-bottom: 5px; }
     .tab-btn { background-color: #E2E8F0; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-weight: 500; }
     .tab-btn.active { background-color: var(--primary-blue); color: white; }
+    
     .timeline { position: relative; padding-left: 20px; }
     .timeline::before { content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 3px; background: linear-gradient(to bottom, var(--primary-blue), var(--accent-gold)); }
-    .timeline-item { position: relative; margin-bottom: 25px; background: #FFF; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--primary-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    
+    /* 基本卡片架構 */
+    .timeline-item { 
+      position: relative; 
+      margin-bottom: 25px; 
+      background: #FFF; 
+      padding: 15px 20px; 
+      border-radius: 8px; 
+      border-left: 4px solid var(--primary-blue); 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
+    }
     .timeline-item::after { content: ''; position: absolute; left: -21px; top: 22px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-gold); border: 2px solid white; }
+    
+    /* ===================================================
+       🎨 【CIS 品牌完美導入】定義四種課程類型的邊框與時間軸圓點
+       =================================================== */
+    .item-type-A { border-left-color: #0A2540 !important; }
+    .item-type-A::after { background: #B39256 !important; } /* 教室聽講：深藍邊 / 金色點 */
+
+    .item-type-B { border-left-color: #7c8a4f !important; } /* 場域走讀：CIS 萬物生長綠 */
+    .item-type-B::after { background: #7c8a4f !important; } 
+
+    .item-type-C { border-left-color: #c9bc9c !important; } /* 自由討論：CIS 溫潤人文金 */
+    .item-type-C::after { background: #c9bc9c !important; } 
+
+    .item-type-D { border-left-color: #8AA0AC !important; } /* 上台報告：CIS 晴空理性藍 */
+    .item-type-D::after { background: #8AA0AC !important; } 
+
+    /* 讓標題前面的 Emoji 圖標與文字保持漂亮的黃金間距 */
+    .event-icon { margin-right: 8px; font-size: 1.1em; }
+    
     .time-badge { font-weight: bold; color: var(--primary-blue); font-size: 15px; margin-bottom: 5px; }
     .event-title { font-size: 18px; font-weight: bold; color: #111; margin: 5px 0; }
-    .meta-info { font-size: 13px; color: #666; margin-bottom: 10px; .meta-info span { margin-right: 15px; } }
+    .meta-info { font-size: 13px; color: #666; margin-bottom: 10px; }
+    .meta-info span { margin-right: 15px; }
     .detail-text { font-size: 14px; line-height: 1.6; color: #444; background: #F8FAFC; padding: 10px; border-radius: 6px; white-space: pre-line; }
+    
     #print-table-view { display: none; }
+    
     @media print {
       body { background: white; color: black; padding: 0; }
       .container { box-shadow: none; padding: 0; max-width: 100%; }
@@ -38,22 +104,23 @@
       .print-event { font-weight: bold; margin-bottom: 4px; }
       .print-detail { font-size: 12px; color: #333; white-space: pre-line; }
     }
+    
     /* 📱 當螢幕寬度小於 600px（手機版）時的特殊排版 */
-  @media screen and (max-width: 600px) {
-  .header { flex-direction: column; align-items: center; text-align: center; height: auto; padding-bottom: 15px; }
-  .controls {
-    margin: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center; /* 💡 讓按鈕在手機畫面的正中央 */
-    gap: 10px;               /* 💡 按鈕與按鈕之間的間距 */
-  }
-  .controls button {
-    margin: 0; /* 💡 清除電腦版的邊距 */
-    flex: 1;   /* 💡 讓按鈕在手機上可以等寬，點擊更流暢（可加可不加） */
-    max-width: 150px; 
-  }
-}
+    @media screen and (max-width: 600px) {
+      .header { flex-direction: column; align-items: center; text-align: center; height: auto !important; padding-bottom: 15px; }
+      .controls {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+        gap: 10px;               
+      }
+      .controls button {
+        margin: 0; 
+        flex: 1;   
+        max-width: 150px; 
+      }
+    }
   </style>
 </head>
 <body>
@@ -89,14 +156,13 @@
 </div>
 
 <script>
-  // 💡 【重要設定】：請在此處填入你剛剛在「第一步」中，重新部署產出的政大 GAS API 網址！
+  // 掛載在公務帳號下的完整 API 網址
   const API_URL = "https://script.google.com/macros/s/AKfycbwzzoiW6bEu-g3O4GgHJIq5jNxjVpdRw0WPSo4_k-2vz8Cs5BZ96VsTrFZoJGRVmTFwOw/exec"; 
 
   let masterData = [];
   let currentLang = 'zh'; 
   let currentDay = 'Day 1';
 
-  // 改回外網 Fetch 模式
   async function fetchData() {
     try {
       const response = await fetch(API_URL);
@@ -141,17 +207,38 @@
   function renderTimeline() {
     const timeline = document.getElementById('timeline-view');
     timeline.innerHTML = '';
-    document.getElementById('page-title').innerText = currentLang === 'zh' ? "2026 國際 PBL 日程表" : "2026 International PBL Program Itinerary";
+    document.getElementById('page-title').innerText = currentLang === 'zh' ? "2026 國際 PBL 課程日程表" : "2026 International PBL Program Itinerary";
+    
     const filtered = masterData.filter(item => item.day === currentDay);
+    
     filtered.forEach(item => {
       const eventText = currentLang === 'zh' ? item.event_cn : (item.event_en || item.event_cn);
       const detailText = currentLang === 'zh' ? item.detail_cn : (item.detail_en || item.detail_cn);
       const hostText = currentLang === 'zh' ? item.host_cn : (item.host_en || item.host_cn);
       const locText = currentLang === 'zh' ? item.location_cn : (item.location_en || item.location_cn);
+      
+      // 💡 預設為 A. 教室上課
+      let typeClass = 'item-type-A'; 
+      let icon = '🏫'; 
+      
+      // 💡 讀取 Google 試算表最右側新增的 type 欄位代號
+      const currentType = item.type ? item.type.toString().trim().toUpperCase() : 'A';
+      
+      if (currentType === 'B') { 
+        typeClass = 'item-type-B'; 
+        icon = 'Sneakers'; // Emoji 顯示 👟
+      } else if (currentType === 'C') { 
+        typeClass = 'item-type-C'; 
+        icon = 'Speech bubble'; // Emoji 顯示 💬
+      } else if (currentType === 'D') { 
+        typeClass = 'item-type-D'; 
+        icon = 'Microphone'; // Emoji 顯示 🎤
+      }
+
       const itemHtml = `
-        <div class="timeline-item">
+        <div class="timeline-item ${typeClass}">
           <div class="time-badge">${item.time_slot}</div>
-          <div class="event-title">${eventText}</div>
+          <div class="event-title"><span class="event-icon">${icon}</span>${eventText}</div>
           <div class="meta-info"><span>👤 ${hostText}</span><span>📍 ${locText}</span></div>
           <div class="detail-text">${detailText}</div>
         </div>
